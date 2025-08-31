@@ -232,11 +232,11 @@ section { padding: 5rem 0; overflow-x: clip; }
 
 /* 7. PRICING SECTION */
 .pricing { background: linear-gradient(-45deg, var(--muted-purple), var(--primary-color), var(--secondary-accent), var(--muted-purple)); background-size: 400% 400%; animation: gradientWave 15s ease infinite; }
-.pricing .section-header h2 { background: none; -webkit-background-clip: initial; -webkit-text-fill-color: initial; color: var(--accent-color); }
+.pricing .section-header h2 { background: none; -webkit-background-clip: initial; background-clip: initial; -webkit-text-fill-color: initial; color: var(--accent-color); }
 .pricing .section-header p, .pricing .cta-line { color: #fff; }
 .pricing .cta-line { text-align: center; margin-top: 2rem; }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; align-items: stretch; }
-.pricing-tier { background-color: rgba(255, 255, 255, 0.1); padding: 2.5rem 2rem; border-radius: 12px; border: 2px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); text-align: center; display: flex; flex-direction: column; transition: all 0.3s ease; }
+.pricing-tier { background-color: rgba(255, 255, 255, 0.1); padding: 2.5rem 2rem; border-radius: 12px; border: 2px solid rgba(255, 255, 255, 0.2); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); text-align: center; display: flex; flex-direction: column; transition: all 0.3s ease; }
 .pricing-tier h3, .pricing-tier p { color: #fff; }
 .pricing-tier h3 { font-size: 1.8rem; }
 .pricing-tier .price { font-size: 2.5rem; font-weight: 800; color: var(--accent-color); margin: 0.5rem 0; }
@@ -286,9 +286,13 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); p
 @media (max-width: 992px) {
     .pricing-grid { grid-template-columns: 1fr; }
     .tier-popular { transform: scale(1); }
-    .feature-grid, .benefits-grid, .feature-grid-balanced { grid-template-columns: 1fr 1fr; }
+    .feature-grid, .feature-grid-balanced { grid-template-columns: 1fr; }
     .guarantee-cards {
-        grid-template-columns: 1fr; /* Stack cards on tablet and smaller */
+        grid-template-columns: 1fr; 
+    }
+    /* === THIS IS THE REVISED FIX === */
+    .benefits-grid {
+        grid-template-columns: 1fr; /* This ensures the benefits cards stack on tablets and below */
     }
 }
 @media (max-width: 768px) {
@@ -296,20 +300,24 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); p
     .hero { padding: 2rem 0; margin-top: 70px; }
     .container { width: 95%; }
     section { padding: 3rem 0; }
-    .feature-grid, .benefits-grid, .final-cta-buttons, .feature-grid-balanced { grid-template-columns: 1fr; flex-direction: column; }
+    /* The benefits-grid is already handled by the 992px rule, but we keep this for other elements */
+    .feature-grid, .final-cta-buttons, .feature-grid-balanced { grid-template-columns: 1fr; }
     .tiles { flex-direction: column; }
     .tile { flex-basis: auto; }
-    .feature-grid-balanced { flex-direction: unset; }
     .confidence-section .confidence-cta-wrapper {
         padding: 2rem 1.5rem;
     }
     .confidence-section .confidence-cta-wrapper p {
         font-size: 1.1rem;
     }
+    /* ADDED: Ensure benefits grid stacks on mobile */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* 11. MOBILE STICKY CTA */
-.mobile-sticky-cta { position: fixed; bottom: 0; left: 0; width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 -4px 30px rgba(94, 37, 58, 0.1); z-index: 900; text-align: center; opacity: 0; transform: translateY(100%); visibility: hidden; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+.mobile-sticky-cta { position: fixed; bottom: 0; left: 0; width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.85); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 -4px 30px rgba(94, 37, 58, 0.1); z-index: 900; text-align: center; opacity: 0; transform: translateY(100%); visibility: hidden; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
 .mobile-sticky-cta.visible { opacity: 1; transform: translateY(0); visibility: visible; }
 .mobile-sticky-cta .button { width: 100%; max-width: 400px; }
 @media (min-width: 769px) { .mobile-sticky-cta { display: none; } }
