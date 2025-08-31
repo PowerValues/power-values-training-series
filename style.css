@@ -64,7 +64,7 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
     left: 0;
     right: 0;
     z-index: 1000;
-    transition: background-color: 0.4s ease, box-shadow 0.4s ease;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 .header.scrolled {
     background-color: rgba(255, 255, 255, 0.85);
@@ -169,7 +169,7 @@ section { padding: 5rem 0; overflow-x: clip; }
 .pricing { background: linear-gradient(-45deg, var(--muted-purple), var(--primary-color), var(--secondary-accent), var(--muted-purple)); background-size: 400% 400%; animation: gradientWave 15s ease infinite; }
 .pricing .section-header h2, .pricing .section-header p { color: #fff; }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; align-items: stretch; }
-.pricing-tier { background-color: rgba(255, 255, 255, 0.1); padding: 2.5rem 2rem; border-radius: 12px; border: 2px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); text-align: center; display: flex; flex-direction: column; transition: all 0.3s ease; }
+.pricing-tier { background-color: rgba(255, 255, 255, 0.1); padding: 2.5rem 2rem; border-radius: 12px; border: 2px solid rgba(255, 255, 255, 0.2); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); text-align: center; display: flex; flex-direction: column; transition: all 0.3s ease; }
 .pricing-tier h3, .pricing-tier p { color: #fff; }
 .pricing-tier h3 { font-size: 1.8rem; }
 .pricing-tier .price { font-size: 2.5rem; font-weight: 800; color: var(--accent-color); margin: 0.5rem 0; }
