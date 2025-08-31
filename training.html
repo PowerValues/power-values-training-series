@@ -228,12 +228,26 @@
                 <div class="section-header">
                     <h2>Your path to alignment is risk-free.</h2>
                 </div>
-                <ul class="outcomes-list">
-                    <li>Cancel anytime.</li>
-                    <li>30-day money-back guarantee.</li>
-                    <li>Start today for less than $1/day — replace drift with direction.</li>
-                </ul>
-                <p class="section-cta">The only risk is staying stuck. Choose your path today — your future self will thank you.</p>
+                <div class="guarantee-cards">
+                    <div class="guarantee-card animate-on-scroll">
+                        <div class="guarantee-icon">🔄</div>
+                        <h3>Cancel Anytime</h3>
+                        <p>No long-term contracts. Stay for as long as it serves you.</p>
+                    </div>
+                    <div class="guarantee-card animate-on-scroll">
+                        <div class="guarantee-icon">🛡️</div>
+                        <h3>30-Day Guarantee</h3>
+                        <p>If you don't feel the shift, get a full refund, no questions asked.</p>
+                    </div>
+                    <div class="guarantee-card animate-on-scroll">
+                        <div class="guarantee-icon">💸</div>
+                        <h3>Start for <$1/Day</h3>
+                        <p>A small investment to replace drift with direction and purpose.</p>
+                    </div>
+                </div>
+                <div class="confidence-cta-wrapper animate-on-scroll">
+                    <p>The only risk is staying stuck. Choose your path today — your future self will thank you.</p>
+                </div>
             </div>
         </section>
         
@@ -241,7 +255,7 @@
             <div class="container">
                 <div class="section-header animate-on-scroll">
                     <h2>The most advanced coaching AI in the world.</h2>
-                     <p>While most AI coaches launch with a fraction of the knowledge, Power Values was built on one of the largest coaching libraries ever assembled.</p>
+                    <p>While most AI coaches launch with a fraction of the knowledge, Power Values was built on one of the largest coaching libraries ever assembled.</p>
                 </div>
                 <div class="tiles">
                     <div class="tile animate-on-scroll">
@@ -255,15 +269,25 @@
                         <p>200+ books, transcripts & trainings (and counting) — 4x the industry standard.</p>
                     </div>
                     <div class="tile animate-on-scroll">
+                        <div class="tile-icon">🗓️</div>
+                        <h3>Structured System</h3>
+                        <p>A 52-week framework blending Motivational Interviewing, Solution-Focused Brief Therapy, and values-based goal setting.</p>
+                    </div>
+                    <div class="tile animate-on-scroll">
                         <div class="tile-icon">🤖</div>
                         <h3>Advanced Coaching AI</h3>
                         <p>Learns your values, adapts to your submissions, and responds like a true coach.</p>
                     </div>
+                     <div class="tile animate-on-scroll">
+                        <div class="tile-icon">🌍</div>
+                        <h3>Global Insights</h3>
+                        <p>Drawn from the same strategies that have shaped thousands of coaches worldwide.</p>
+                    </div>
                 </div>
                  <div class="credibility-bar animate-on-scroll">
-                    <span>📅 52 Weeks</span>
+                    <span>📅 <span class="count-up" data-target="52">0</span> Weeks</span>
                     <span>·</span>
-                    <span>📚 200+ Sources</span>
+                    <span>📚 <span class="count-up" data-target="200">0</span>+ Sources</span>
                     <span>·</span>
                     <span>🏆 Robbins-Madanes Leadership</span>
                     <span>·</span>
@@ -417,6 +441,45 @@
             };
             window.addEventListener('scroll', toggleCtaOnScroll);
             toggleCtaOnScroll();
+        }
+
+        // --- 3. COUNT-UP ANIMATION FOR CREDIBILITY BAR ---
+        const credBar = document.querySelector('.credibility-bar');
+        if (credBar) {
+            const counters = credBar.querySelectorAll('.count-up');
+            let animationStarted = false;
+
+            const startCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // Animation duration in ms
+                    let startTimestamp = null;
+
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        const currentValue = Math.floor(progress * target);
+                        counter.innerText = currentValue;
+
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                });
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animationStarted) {
+                        animationStarted = true;
+                        startCounters();
+                        observer.unobserve(credBar);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(credBar);
         }
     });
     </script>
