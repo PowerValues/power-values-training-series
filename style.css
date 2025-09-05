@@ -146,7 +146,9 @@ section { padding: 5rem 0; overflow-x: clip; }
 .bridge-cta { font-family: var(--font-heading); font-size: 1.2rem; margin-top: 2rem; }
 
 /* 5. CONTENT SECTIONS */
-.gap-problem { background-color: #fdf8fa; }
+.gap-problem, .experience-outcomes, .differentiators, .confidence-section, .whats-inside {
+    padding: 5rem 0;
+}
 .experience-outcomes, .differentiators { background-color: #fdf8fa; }
 .whats-inside, .confidence-section { background-color: #fff; }
 .confidence-section {
@@ -365,6 +367,7 @@ footer {
 
 /* 10. RESPONSIVE DESIGN */
 @media (max-width: 992px) {
+    section { padding: 4rem 0; }
     .pricing-grid { grid-template-columns: 1fr; }
     .tier-popular { transform: scale(1); }
     .feature-grid, .feature-grid-balanced { grid-template-columns: 1fr; }
@@ -376,10 +379,10 @@ footer {
     }
 }
 @media (max-width: 768px) {
+    section { padding: 3rem 0; }
     .header-cta { display: none; }
     .hero { padding: 2rem 0; margin-top: 70px; }
     .container { width: 95%; }
-    section { padding: 3rem 0; }
     .feature-grid, .final-cta-buttons, .feature-grid-balanced { grid-template-columns: 1fr; }
     .tiles { flex-direction: column; }
     .tile { flex-basis: auto; }
@@ -389,7 +392,7 @@ footer {
     .confidence-section .confidence-cta-wrapper p {
         font-size: 1.1rem;
     }
-    /* FIX: Removed the redundant .benefits-grid rule from here. It is handled by the 992px rule. */
+    .footer-container { gap: 1rem; }
 }
 
 /* 11. MOBILE STICKY CTA */
